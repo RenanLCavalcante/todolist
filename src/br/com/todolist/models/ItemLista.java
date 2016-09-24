@@ -16,8 +16,11 @@ public class ItemLista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String descricao;
+	
 	private boolean feito;
+	
 	@ManyToOne
 	@JoinColumn(name="lista_id")
 	private Lista lista;
