@@ -48,6 +48,7 @@ public class ItemRestController {
 	@RequestMapping(value="/lista/{idLista}/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ItemLista> addItem(@PathVariable Long idLista,@RequestBody ItemLista itemLista) {
 		try {
+			
 			itemDao.inserir(idLista, itemLista);
 			
 			URI location = new URI("/item/" + itemLista.getId());

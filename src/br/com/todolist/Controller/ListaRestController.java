@@ -71,14 +71,20 @@ public class ListaRestController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@RequestMapping(value="/item/{idItem}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> removerItem(@PathVariable(value="idItem") Long idItem){
+	@RequestMapping(value = "/item/{idItem}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> removerItem(@PathVariable(value = "idItem") Long idItem) {
 		listaDao.excluirItem(idItem);
 		return ResponseEntity.noContent().build();
 	}
-	
-	public ResponseEntity<Lista> buscarPorId(Long id){
+
+	@RequestMapping(value = "/lista/{idItem}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Lista> buscarPorId(@PathVariable(value = "idItem") Long id) {
 		
-		//coder aqui
+		Lista iLista = listaDao.buscarPorId(id);
+		
+		if (!iLista.equals(null)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(iLista);
 	}
 }
